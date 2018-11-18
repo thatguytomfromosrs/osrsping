@@ -26,7 +26,7 @@ FILE=".bestosrsservers"
 for servernumber in {1..99}; do
 
 	#ping server and capture latency
-    pingresult="$(ping -c1 $url | awk '{print $8}' | grep time)"
+    	pingresult="$(ping -c1 $url | awk '{print $8}' | grep time)"
 
 	#remove time= from variable
 	pingresult="${pingresult//time=}"
