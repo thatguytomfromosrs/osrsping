@@ -14,62 +14,62 @@ domain=".runescape.com"
 hostname="oldschool"
 servernumber=1
 
-#final url for the for loop
+#Final url for the for loop
 url="$hostname$servernumber$domain"
 
-#setting the output file
+#Setting the output file
 FILE=".bestosrsservers"
-#clear file
+#Clear file
 > $FILE
 
-#begin loop at World 1 end at World 99
+#Begin loop at World 1 end at World 99
 for servernumber in {1..99}; do
 
-	#ping server and capture latency
+	#Ping world and capture latency
     	pingresult="$(ping -c1 $url | awk '{print $8}' | grep time)"
 
-	#remove time= from variable
+	#Remove time= from variable
 	pingresult="${pingresult//time=}"
 
-	#remove decimal for simplicity sake
+	#Remove decimal for simplicity sake
 	pingresult=$(printf "%.0f\n" "$pingresult")
 	
 	#Less than 50 ping means green text
 	if [ "$pingresult" -lt 50 ]; then
 	
-		#Prints low ping results to file
+		#Prints low ping results to temp file
 		echo -e "\e[42mWorld $servernumber has $pingresult ping.\e[49m"
 		echo "World $servernumber - $pingresult ping" >> $FILE
 	
-	#between 50 and 100 gets yellow text
+	#Between 50 and 100 gets yellow text
 	elif [ "$pingresult" -gt 50 ] && [ "$pingresult" -lt 100 ]
 	then
 	
-		#displays ping of mid range servers in yellow
+		#Displays ping of mid range servers in yellow
 		echo -e "\e[33mWorld $servernumber has $pingresult ping.\e[49m"
 		
 	else
 		
-		#displays ping of high ping servers in red
+		#Displays ping of high ping servers in red
 		echo -e "\e[41mWorld $servernumber has $pingresult ping.\e[49m"
 		
 	fi
 	
-	#server number incrementer for loop
+	#World number incrementer for loop
 	servernumber=$(expr $servernumber + 1)
 	
-	#url variable redefinition for loop
+	#Url variable redefinition for loop
 	url="$hostname$servernumber$domain"
 	
-#end of loop	
+#End of loop	
 done
 
-#pause so last server gets printed
+#Pause so last server gets printed
 sleep 1s
-#gets rid of color formatting in console
+#Gets rid of color formatting in console
 reset
 
-#print next screen header
+#Print done and list of good worlds
 echo -e "\e[44;93m  _____                   "
 echo -e " |  __ \                  "
 echo -e " | |  | | ___  _ __   ___ "
@@ -79,39 +79,39 @@ echo -e " |_____/ \___/|_| |_|\___| "
 echo -e "                          \e[49;39m"
 echo
 
-#prints lowest ping worlds
+#Prints lowest ping worlds
 echo -e "\e[42mThe lowest ping worlds: "
 cat .bestosrsservers
 echo -e "\e[49m"
 read -p "Press enter to continue..."
 
-#gets rid of green color formatting
+#Gets rid of green color formatting
 reset
 
-#asks if user wants to save hidden world list to .txt file
+#Asks if user wants to save hidden world list to .txt file
 echo "Save list of best servers to bestservers.txt? (y/n)"
 
-#get answer from user
+#Get answer from user
 read answer
 if [ "$answer" == "y" ]; then
-	#overwrites or creates file
+	#Overwrites or creates file
 	touch bestservers.txt
 	cat .bestosrsservers > bestservers.txt
 	echo "bestservers.txt has been saved to the working directory."
 	echo
 	read -p "Press enter to continue..."
 else
-	#removes files if no
+	#Removes files if no
 	echo "Didn't save to bestservers.txt, removing file if exists..."
 	rm -f bestservers.txt
 	echo
 	read -p "Press enter to continue..."
 fi
 
-#remove best servers temp file
+#Remove best servers temp file
 rm -f .bestosrsservers
 
-#clear
+#Clear
 clear
 
 #END OF SCRIPT
