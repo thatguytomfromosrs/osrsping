@@ -14,6 +14,7 @@ Guide for Windows 10
 
 Guide for Linux:
 1. Download script to ~
+2. Open terminal
 2. chmod +x pingservers.sh
 3. pingservers.sh
 4. Done!
