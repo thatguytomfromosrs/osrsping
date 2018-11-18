@@ -11,16 +11,28 @@ Guide for Windows 10
 3. Go to Microsoft Store
 4. Download Ubuntu: https://i.imgur.com/8JS2UsU.png
 5. Launch Ubuntu and wait for install to complete then close
-6. Download OSRSWorldPingTool.sh
+6. Download OSRSWorldPingTool.sh from link below
 7. Put file on your Desktop
-8. Open PowerShell again as administrator and type in this command: cd ~; cd Desktop
-9. Now type in this command: bash OSRSWorldPingTool.sh
+8. Open PowerShell again and type in this command:
+
+        cd ~; cd Desktop
+
+9. Now type in this command:
+
+        bash OSRSWorldPingTool.sh
+
 10. Done!
 
 Guide for Linux
 ================
 1. Download OSRSWorldPingTool.sh to ~
 2. Open terminal
-3. Type in terminal to enable execution permissions: chmod +x OSRSWorldPingTool.sh
-4. Type in terminal: OSRSWorldPingTool.sh
+3. Type in terminal to enable execution permissions:
+
+        chmod +x OSRSWorldPingTool.sh
+
+4. Execute script:
+
+        OSRSWorldPingTool.sh
+
 5. Done!
